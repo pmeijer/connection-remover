@@ -62,13 +62,13 @@ define([
                 // Check that it's not an inherited child (which cannot be deleted).
                 if (base && parent && base.getParentId() !== parent.getBaseId()) {
                     nodeId = nodeObj.getId();
-                    client.startTransaction();
+                    client.startTransaction('');
 
                     // Set a timeout in order to allow other connections to remove themselves.
                     setTimeout(function () {
                         client.deleteNode(nodeId, 'Connection node [ ' + nodeObj.getId() +
-                            ' ] without src or dst removed by ConnRemoverDecorator.');
-                        client.completeTransaction();
+                            ' ] removed by ConnRemoverDecorator.');
+                        client.completeTransaction('');
                     });
                 }
             }
