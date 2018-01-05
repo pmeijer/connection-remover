@@ -46,23 +46,25 @@ define([
             base;
 
         if (nodeObj &&
-            nodeObj.getMetaTypeId() !== nodeObj.getId() &&
             nodeObj.isReadOnly() === false &&
+            nodeObj.getMetaTypeId() !== nodeObj.getId() &&
+            nodeObj.isConnection() && // src and dst are defined as pointers
             (typeof nodeObj.getPointerId('src') !== 'string' || typeof nodeObj.getPointerId('dst') !== 'string')) {
 
             parent = nodeObj.getParentId();
             base = nodeObj.getBaseId();
 
+            // Makes sure we don't delete the FCO or ROOT.
             if (typeof base === 'string' && typeof parent === 'string') {
-                // Makes sure we don't delete the FCO or ROOT.
                 base = client.getNode(base);
                 parent = client.getNode(parent);
 
+                // Check that it's not an inherited child (which cannot be deleted).
                 if (base && parent && base.getParentId() !== parent.getBaseId()) {
-                    // Not an inherited child.
                     nodeId = nodeObj.getId();
                     client.startTransaction();
 
+                    // Set a timeout in order to allow other connections to remove themselves.
                     setTimeout(function () {
                         client.deleteNode(nodeId, 'Connection node [ ' + nodeObj.getId() +
                             ' ] without src or dst removed by ConnRemoverDecorator.');
