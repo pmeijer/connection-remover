@@ -1,4 +1,12 @@
 {
-  "components": {},
-  "dependencies": {}
+  "components": {
+    "decorators": {
+      "ConnRemoverDecorator": {
+        "src": "src/decorators/ConnRemoverDecorator"
+      }
+    }
+  },
+  "dependencies": {
+    "decorators": {}
+  }
 }
