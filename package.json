@@ -1,5 +1,5 @@
 {
-  "name": "connection-remover",
+  "name": "webgme-connection-remover",
   "description": "Webgme decorator for auto removal of dangling connections.",
   "author": {
     "name": "WebGME Development Team",
