@@ -1,5 +1,22 @@
 {
   "name": "connection-remover",
+  "description": "Webgme decorator for auto removal of dangling connections.",
+  "author": {
+    "name": "WebGME Development Team",
+    "url": "https://webgme.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmeijer/connection-remover.git"
+  },
+  "keywords": [
+    "webgme",
+    "decorator",
+    "diagram-designer",
+    "connections",
+    "webgme-component"
+  ],
+  "license": "MIT",
   "scripts": {
     "start": "node app.js",
     "test": "node ./node_modules/mocha/bin/mocha --recursive test",
@@ -13,7 +30,7 @@
     "users": "node ./node_modules/webgme-engine/src/bin/usermanager.js",
     "clean_up": "node ./node_modules/webgme-engine/src/bin/clean_up.js"
   },
-  "version": "1.0.0",
+  "version": "0.1.0",
   "peerDependencies": {
     "webgme": ">=2.21.0"
   },
